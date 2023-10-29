@@ -1,138 +1,145 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'IBM Plex Sans';
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans";
 }
 
 body {
-    background-color: #F3F4F4;
+  background-color: #f3f4f4;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 section {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.10);
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06),
+    0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  border-radius: 8px;
 }
 
 section h2 {
-    color: #125de6;
+  color: #125de6;
 }
 
 input {
-    font-size: 14px;
+  font-size: 14px;
 }
 
-input[type='text'],
-input[type='number'] {
-    padding: 7px 8px;
+input[type="text"],
+input[type="number"] {
+  padding: 7px 8px;
 }
 
 button {
-    font-size: 16px;
-    background-color: #125de6;
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
+  font-size: 16px;
+  background-color: #125de6;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:active {
-    filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .header {
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #125de6;
-    color: white;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #125de6;
+  color: white;
 }
 
 main {
-    max-width: 720px;
-    width: 80%;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  max-width: 720px;
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 section h2 {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .input-book-data {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .input-book-data form {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 .input-book-data form .input-group:first-child,
 .input-book-data button {
-    grid-column: span 4;
+  grid-column: span 4;
 }
 
 .input-book-data .input-group:nth-child(2) {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
 .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .label-h {
-    flex-direction: row;
-    align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-book form {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .search-book input {
-    flex: 1;
+  flex: 1;
+}
+
+.book-shelf {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .book-item {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border: 1px solid #cacaca;
-    border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
 }
 
 .action {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
 }
 
 .delete {
-    background-color: red;
+  background-color: red;
 }
 
 .finish {
-    background-color: rgb(9, 99, 57);
+  background-color: rgb(9, 99, 57);
 }
 
 #completeBookshelfList .finish {
-    background-color: #125de6;
+  background-color: #125de6;
 }
