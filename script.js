@@ -60,13 +60,13 @@ function loadDataFromStorage() {
 }
 
 function addBook() {
-  const bookTitle = document.getElementById("inputBookTitle").value;
+  const title = document.getElementById("inputBookTitle").value;
   const author = document.getElementById("inputBookAuthor").value;
   const year = Number(document.getElementById("inputBookYear").value);
-  const isCompleted = document.getElementById("inputBookIsComplete").checked;
+  const isComplete = document.getElementById("inputBookIsComplete").checked;
 
-  const generatedID = +new Date();
-  const bookObject = { generatedID, bookTitle, author, year, isCompleted };
+  const id = +new Date();
+  const bookObject = { id, title, author, year, isComplete };
   books.push(bookObject);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
