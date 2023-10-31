@@ -19,7 +19,7 @@ document.addEventListener(RENDER_EVENT, function () {
 
   for (const bookItem of books) {
     const bookElement = makeBookItem(bookItem);
-    if (!bookItem.isCompleted) {
+    if (!bookItem.isComplete) {
       ongoingReadList.append(bookElement);
     } else {
       completedReadList.append(bookElement);
@@ -78,7 +78,7 @@ function markBookStatus(bookId, status) {
 
   if (bookTarget == null) return;
 
-  bookTarget.isCompleted = status;
+  bookTarget.isComplete = status;
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
@@ -129,12 +129,12 @@ function searchBook() {
 
   if (searchValue) {
     const results = books.filter((book) =>
-      book.bookTitle.toLowerCase().includes(searchValue.toLowerCase())
+      book.title.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     for (const result of results) {
       const bookResult = makeBookItem(result);
-      if (!result.isCompleted) {
+      if (!result.isComplete) {
         ongoingReadList.append(bookResult);
       } else {
         completedReadList.append(bookResult);
@@ -145,7 +145,7 @@ function searchBook() {
 
 function makeBookItem(bookObject) {
   const titleText = document.createElement("h3");
-  titleText.innerText = bookObject.bookTitle;
+  titleText.innerText = bookObject.title;
 
   const authorText = document.createElement("span");
   authorText.innerText = `Penulis: ${bookObject.author}`;
@@ -175,7 +175,7 @@ function makeBookItem(bookObject) {
   bookContainer.append(titleText, authorText, yearText, actionContainer);
   bookContainer.setAttribute("id", `book-${bookObject.id}`);
 
-  if (bookObject.isCompleted) {
+  if (bookObject.isComplete) {
     finishButton.innerText = "Belum selesai dibaca";
 
     finishButton.addEventListener("click", function () {
