@@ -30,6 +30,7 @@ document.addEventListener(RENDER_EVENT, function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.getElementById("inputBook");
+  const searchForm = document
   submitForm.addEventListener("submit", function (event) {
     event.preventDefault();
     addBook();
@@ -50,6 +51,17 @@ function loadDataFromStorage() {
   }
 
   document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+function changeSubmitButtonText() {
+  const submitText = document.getElementById("submitText");
+  const isCompleted = document.getElementById("inputBookIsComplete").checked;
+
+  if (isCompleted) {
+    submitText.innerText = "Selesai dibaca"
+  } else {
+    submitText.innerText = "Belum selesai dibaca"
+  }
 }
 
 function addBook() {

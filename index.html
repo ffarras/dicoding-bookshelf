@@ -33,10 +33,10 @@
                     <input id="inputBookYear" type="number" required>
                 </div>
                 <div class="input-group label-h">
-                    <input id="inputBookIsComplete" type="checkbox">
+                    <input id="inputBookIsComplete" type="checkbox" onchange="changeSubmitButtonText()">
                     <label for="inputBookIsComplete">Selesai dibaca</label>
                 </div>
-                <button id="bookSubmit" type="submit">Masukkan Buku ke rak <span>Belum selesai dibaca</span></button>
+                <button id="bookSubmit" type="submit">Masukkan Buku ke rak <span id="submitText">Belum selesai dibaca</span></button>
             </form>
         </section>
 
