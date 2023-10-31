@@ -1,24 +1,15 @@
 const books = [];
 const RENDER_EVENT = "render-book";
-const bookCollection = "BOOK_COLLECTION";
-const ongoingBookCollection = "ONGOING_BOOK";
-const completedBookCollection = "COMPLETED_BOOK";
+const SAVED_EVENT = "saved-book";
+const STORAGE_KEY = "BOOK_APPS";
 
-window.addEventListener("load", function () {
-  if (typeof Storage !== "undefined") {
-    if (localStorage.getItem(ongoingBookCollection) === null) {
-      localStorage.setItem(ongoingBookCollection, "");
-    }
-    if (localStorage.getItem(completedBookCollection) === null) {
-      localStorage.setItem(completedBookCollection, "");
-    }
-    if (localStorage.getItem(bookCollection) === null) {
-      localStorage.setItem(bookCollection, "");
-    }
-  } else {
-    alert("Browser yang Anda gunakan tidak mendukung Web Storage");
+function isStorageExist() /* boolean */ {
+  if (typeof (Storage) === undefined) {
+    alert('Browser kamu tidak mendukung local storage');
+    return false;
   }
-});
+  return true;
+}
 
 document.addEventListener(RENDER_EVENT, function () {
   const ongoingReadList = document.getElementById("readOngoingList");
@@ -27,9 +18,7 @@ document.addEventListener(RENDER_EVENT, function () {
   const completedReadList = document.getElementById("readCompleteList");
   completedReadList.innerHTML = "";
 
-  booksAll = JSON.parse(localStorage.getItem(bookCollection));
-
-  for (const bookItem of booksAll) {
+  for (const bookItem of books) {
     const bookElement = makeBookItem(bookItem);
     if (!bookItem.isCompleted) {
       ongoingReadList.append(bookElement);
@@ -45,7 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     addBook();
   });
+  if (isStorageExist()) {
+    loadDataFromStorage();
+  }
 });
+
+function loadDataFromStorage() {
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+  let data = JSON.parse(serializedData);
+
+  if (data !== null) {
+    for (const book of data) {
+      books.push(book);
+    }
+  }
+
+  document.dispatchEvent(new Event(RENDER_EVENT));
+}
 
 function addBook() {
   const bookTitle = document.getElementById("inputBookTitle").value;
@@ -62,9 +67,9 @@ function addBook() {
     isCompleted
   );
   books.push(bookObject);
-  localStorage.setItem(bookCollection, JSON.stringify(books));
 
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function generateId() {
@@ -88,6 +93,7 @@ function markBookCompleted(bookId) {
 
   bookTarget.isCompleted = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function markBookOngoing(bookId) {
@@ -97,6 +103,7 @@ function markBookOngoing(bookId) {
 
   bookTarget.isCompleted = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function deleteBook(bookId) {
@@ -106,6 +113,7 @@ function deleteBook(bookId) {
 
   books.splice(bookTarget, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
 }
 
 function findBook(bookId) {
@@ -124,6 +132,14 @@ function findBookIndex(bookId) {
   }
 
   return -1;
+}
+
+function saveData() {
+  if (isStorageExist()) {
+    const parsed = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
 }
 
 function makeBookItem(bookObject) {
