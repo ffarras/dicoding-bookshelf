@@ -126,8 +126,8 @@ function changeSubmitButtonText() {
 
 function searchBook() {
   const searchValue = document.getElementById("searchBookTitle").value;
-  ongoingReadList.innerHTML = "";
-  completedReadList.innerHTML = "";
+  ongoingReadList.innerHTML = "Buku tidak ditemukan";
+  completedReadList.innerHTML = "Buku tidak ditemukan";
 
   if (searchValue) {
     const results = books.filter((book) =>
