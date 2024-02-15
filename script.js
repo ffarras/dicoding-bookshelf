@@ -14,14 +14,16 @@ function isStorageExist() {
 }
 
 document.addEventListener(RENDER_EVENT, function () {
-  ongoingReadList.innerHTML = "";
-  completedReadList.innerHTML = "";
+  ongoingReadList.innerHTML = "Tidak ada buku";
+  completedReadList.innerHTML = "Tidak ada buku";
 
   for (const bookItem of books) {
     const bookElement = makeBookItem(bookItem);
     if (!bookItem.isComplete) {
+      ongoingReadList.innerHTML = "";
       ongoingReadList.append(bookElement);
     } else {
+      completedReadList.innerHTML = "";
       completedReadList.append(bookElement);
     }
   }

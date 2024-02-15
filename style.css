@@ -29,6 +29,16 @@ section h2 {
 
 input {
   font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid gray;
+}
+
+input:not([type="checkbox"]):focus {
+  outline: 2px solid #125de6;
+}
+
+input[type="checkbox"] {
+  accent-color: #125de6;
 }
 
 input[type="text"],
@@ -78,7 +88,7 @@ section h2 {
 
 .input-book-data form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, calc(25% - 12px));
   gap: 16px;
 }
 
@@ -117,6 +127,12 @@ section h2 {
   gap: 8px;
 }
 
+.book-shelf:not(:has(.book-item)) {
+  text-align: center;
+  color: rgb(189, 189, 189);
+  font-size: 14px;
+}
+
 .book-item {
   padding: 16px;
   display: flex;
@@ -142,4 +158,31 @@ section h2 {
 
 #completeBookshelfList .finish {
   background-color: #125de6;
+}
+
+@media screen and (max-width: 768px) {
+  .input-book-data .input-group:nth-child(2) {
+    grid-column: span 3;
+  }
+
+  .input-book-data .label-h {
+    grid-column: span 3;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  form,
+  .input-book-data form,
+  .action {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .action {
+    padding-top: 4px;
+  }
+
+  .action button {
+    width: fit-content;
+  }
 }
